@@ -1,3 +1,8 @@
+const API_BASE = '';
 export const environment = {
-  production: true
+  production: true,
+
+  endpoints: {
+    associados: `${API_BASE}/associados`
+  }
 };

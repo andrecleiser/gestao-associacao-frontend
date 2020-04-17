@@ -1,0 +1,30 @@
+.side-container {
+    display: flex;
+    margin-top: 5em;
+    min-height: 500px;
+    background-color: white;    
+}
+
+.side-left {
+    width: 70px;
+}
+
+.side-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.side-left-flex {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Mobile */
+@media(max-width: 450px) {
+    .side-left {
+        display: none;
+    }
+}

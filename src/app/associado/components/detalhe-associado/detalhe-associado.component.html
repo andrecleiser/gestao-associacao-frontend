@@ -1,0 +1,8 @@
+<div class="card-padrao">
+  <app-foto-associado [fotoBase64]="dadosAssociado.foto"></app-foto-associado>
+  <div class="dados-associado">
+    <p class="conteudo"> {{ dadosAssociado.nome }} </p>
+    <p class="conteudo"> {{ dadosAssociado.dataNascimento | date: 'dd/MM/yyyy' }} </p>
+    <p class="conteudo"> {{ dadosAssociado.nacionalidade }} </p>
+  </div>
+</div>

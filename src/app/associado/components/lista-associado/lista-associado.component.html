@@ -1,0 +1,5 @@
+<div class="lista-geral">
+        <app-detalhe-associado
+        *ngFor="let perfil of perfisAssociado$ | async as perfisAssociado"
+        [dadosAssociado]=perfil> <p>{{ perfil }} ANDRÉ CLEISER</p> </app-detalhe-associado>
+</div>

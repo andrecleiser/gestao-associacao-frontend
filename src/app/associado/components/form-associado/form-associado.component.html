@@ -1,0 +1,70 @@
+<form class="geral app-card" [formGroup]="formAssociado">
+    <div class="dados-pessoas">
+        <div class="linha">
+            <mat-form-field class="campos campo-grande">
+                <mat-label>Nome</mat-label>
+                <input matInput placeholder="Nome...">
+            </mat-form-field>
+            <mat-form-field class="campos">
+                <mat-label>Data de nascimento</mat-label>
+                <input matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="linha">
+            <mat-form-field class="campos">
+                <mat-label>Nacionalidade</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field class="campos campo-grande">
+                <mat-label>Nome da mãe</mat-label>
+                <input matInput placeholder="Mãe...">
+            </mat-form-field>
+            <mat-form-field class="campos campo-grande">
+                <mat-label>Nome da pai</mat-label>
+                <input matInput placeholder="Pai...">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="linha">
+        <mat-form-field class="campos campo-grande">
+            <mat-label>E-mail</mat-label>
+            <input matInput placeholder="E-mail...">
+        </mat-form-field>
+        <mat-form-field class="campos ddi">
+            <mat-label>DDI</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="campos">
+            <mat-label>Telemóvel</mat-label>
+            <input matInput placeholder="Telemóvel...">
+        </mat-form-field>
+    </div>
+
+    <div class="linha">
+        <mat-form-field class="campos morada">
+            <mat-label>Morada</mat-label>
+            <input matInput placeholder="Morada...">
+        </mat-form-field>
+        <mat-form-field class="campos">
+            <mat-label>Concelho</mat-label>
+            <input matInput placeholder="Concelho...">
+        </mat-form-field>
+        <mat-form-field class="campos">
+            <mat-label>Distrito</mat-label>
+            <input matInput placeholder="Distrito...">
+        </mat-form-field>
+        <mat-form-field class="campos codigo-postal">
+            <mat-label>Cód. postal</mat-label>
+            <input matInput>
+        </mat-form-field>
+    </div>
+
+    <div class="linha-botoes">
+        <button class="botoes" type="submit" (click)="salvarAssociado()" [disabled]="!formAssociado.valid"
+            mat-raised-button color="primary">Salvar</button>
+        <button class="botoes" mat-raised-button>Cancelar</button>
+    </div>
+</form>

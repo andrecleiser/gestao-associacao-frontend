@@ -1,0 +1,75 @@
+.flex-container .geral{
+    width: 80%;
+}
+
+.campos {
+    margin-right: 5px;
+}
+
+.linha {
+    display: flex;
+}
+
+.linha-botoes {
+    display: flex;
+}
+
+.dados-pessoas {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-grande {
+    flex-grow: 1;
+}
+
+.ddi {
+    width: 40px;
+}
+
+.codigo-postal {
+    width: 80px;
+}
+
+.morada {
+    flex-grow: 1;
+}
+
+.botoes {
+    width: 100px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+/* Mobile */
+@media(max-width: 450px) {
+    .geral{
+        width: inherit;
+    }
+    
+    .linha {
+        flex-direction: column;
+    }
+    
+    .ddi {
+        width: auto;
+    }
+    
+    .codigo-postal {
+        width: auto;
+    }
+    
+    .botoes {
+        width: 100px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
+    
+    .linha-botoes-mobile {
+        display: flex;
+    }
+    
+    .campos {
+        width: auto;
+    }
+}
