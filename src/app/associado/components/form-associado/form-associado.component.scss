@@ -1,5 +1,11 @@
-.flex-container .geral{
-    width: 80%;
+@import '~@angular/material/theming';
+
+.geral {
+    display: flex;
+    flex-direction: column;
+    @include mat-elevation(6);
+    margin: 15px;
+    padding: 15px;
 }
 
 .campos {
@@ -43,10 +49,6 @@
 
 /* Mobile */
 @media(max-width: 450px) {
-    .geral{
-        width: inherit;
-    }
-    
     .linha {
         flex-direction: column;
     }

@@ -5,3 +5,9 @@
     justify-content: space-between;
     max-width: 950px;
 }
+
+@media(max-width: 450px) {
+    .lista-geral {
+        flex-direction: column;    
+    }
+}

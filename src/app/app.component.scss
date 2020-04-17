@@ -2,7 +2,7 @@
     display: flex;
     margin-top: 5em;
     min-height: 500px;
-    background-color: white;    
+    background-color: white;
 }
 
 .side-left {
@@ -11,9 +11,8 @@
 
 .side-right {
     display: flex;
-    flex-direction: column;
+    width: 100%;    
     justify-content: center;
-    width: 100%;
 }
 
 .side-left-flex {
@@ -26,5 +25,10 @@
 @media(max-width: 450px) {
     .side-left {
         display: none;
+    }
+
+    .side-right {
+        flex-direction: column;
+        flex-grow: 1;
     }
 }
