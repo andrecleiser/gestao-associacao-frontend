@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     width: 300px;
-    height: 350px;
+    height: 395px;
     margin: 25px 0px 25px 0px;
     @include mat-elevation(6);
     background-color: white;
@@ -14,10 +14,8 @@
 .dados-associado {
     display: flex;
     flex-direction: column;
-    margin: 10px 25px 20px 25px;
-    padding-top: 15px;
-    @include mat-elevation(4);
-    border-radius: 5%;
+    margin-top: 10px;
+    margin-left: 20px;
 }
 
 .conteudo {
@@ -27,4 +25,16 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+
+.div-botao-atualizar {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+    align-items: flex-end;
+}
+
+.botao-atualizar {
+    margin-bottom: 5px;
+    margin-right: 5px;
 }

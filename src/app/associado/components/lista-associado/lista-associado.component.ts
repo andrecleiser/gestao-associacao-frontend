@@ -1,5 +1,5 @@
 import { AssociadoService } from './../../service/associado.service';
-import { PerfilAssociadoDto } from './../../models/perfil-associado.model';
+import { PerfilAssociadoDto } from '../../models/perfil-associado-dto.model';
 import { Observable } from 'rxjs';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 

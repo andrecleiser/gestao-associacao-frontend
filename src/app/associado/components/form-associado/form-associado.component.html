@@ -4,27 +4,55 @@
             <div class="linha">
                 <mat-form-field class="campos campo-grande">
                     <mat-label>Nome</mat-label>
-                    <input matInput placeholder="Nome...">
+                    <input formControlName = "nome" autofocus matInput>
+                    <mat-error *ngIf="formAssociado.get('nome').hasError('required')">
+                        Nome do associado deve ser informado
+                    </mat-error>
+                    <mat-error *ngIf="formAssociado.get('nome').hasError('minlength') || formAssociado.get('nome').hasError('maxlength')">
+                        Nome do associado deve ter entre 10 e 70 caracteres
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field class="campos">
                     <mat-label>Data de nascimento</mat-label>
-                    <input matInput [matDatepicker]="picker">
+                    <input formControlName = "dataNascimento" matInput [matDatepicker]="picker" [max]="hoje">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-datepicker #picker color="primary"></mat-datepicker>
+                    <mat-error *ngIf="formAssociado.get('dataNascimento').hasError('required')">
+                        Data de nascimento deve ser informada
+                    </mat-error>
+                    <mat-error *ngIf="formAssociado.get('dataNascimento').hasError('datanoapassado')">
+                        Data de nascimento não pode ser futura
+                    </mat-error>
                 </mat-form-field>
             </div>
             <div class="linha">
                 <mat-form-field class="campos">
                     <mat-label>Nacionalidade</mat-label>
-                    <input matInput>
+                    <input formControlName = "nacionalidade" matInput>
+                    <mat-error *ngIf="formAssociado.get('nacionalidade').hasError('required')">
+                        Nacionalidade deve ser informado
+                    </mat-error>
+                    <mat-error *ngIf="formAssociado.get('nacionalidade').hasError('minlength') || formAssociado.get('nacionalidade').hasError('maxlength')">
+                        Nacionalidade deve ter entre 5 e 30 caracteres
+                    </mat-error>
+
                 </mat-form-field>
                 <mat-form-field class="campos campo-grande">
                     <mat-label>Nome da mãe</mat-label>
-                    <input matInput placeholder="Mãe...">
+                    <input formControlName = "nomeMae" matInput>
+                    <mat-error *ngIf="formAssociado.get('nomeMae').hasError('required')">
+                        Nome da mãe deve ser informado
+                    </mat-error>
+                    <mat-error *ngIf="formAssociado.get('nomeMae').hasError('minlength') || formAssociado.get('nomeMae').hasError('maxlength')">
+                        Nome da mãe deve ter entre 10 e 70 caracteres
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field class="campos campo-grande">
                     <mat-label>Nome da pai</mat-label>
-                    <input matInput placeholder="Pai...">
+                    <input formControlName = "nomePai" matInput>
+                    <mat-error *ngIf="formAssociado.get('nomePai').hasError('minlength') || formAssociado.get('nomePai').hasError('maxlength')">
+                        Nome da pai deve ter entre 10 e 70 caracteres
+                    </mat-error>
                 </mat-form-field>
             </div>
         </div>
@@ -32,39 +60,73 @@
         <div class="linha">
             <mat-form-field class="campos campo-grande">
                 <mat-label>E-mail</mat-label>
-                <input matInput placeholder="E-mail...">
+                <input formControlName = "email" matInput>
+                <mat-error *ngIf="formAssociado.get('email').hasError('required')">
+                    E-mail deve ser informado
+                </mat-error>
+                <mat-error *ngIf="formAssociado.get('email').hasError('email')">
+                    E-mail inválido
+                </mat-error>
+                <mat-error *ngIf="formAssociado.get('email').hasError('minlength') || formAssociado.get('email').hasError('maxlength')">
+                    E-mail deve ter entre 10 e 50 caracteres
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="campos ddi">
                 <mat-label>DDI</mat-label>
-                <input matInput>
+                <input formControlName = "ddi" matInput>
+                <mat-error *ngIf="formAssociado.get('email').hasError('minlength') || formAssociado.get('email').hasError('maxlength')">
+                    DDI deve ter entre 2 e 3 caracteres
+                </mat-error>
+
             </mat-form-field>
             <mat-form-field class="campos">
                 <mat-label>Telemóvel</mat-label>
-                <input matInput placeholder="Telemóvel...">
+                <input formControlName = "telemovel" matInput>
+                <mat-error *ngIf="formAssociado.get('telemovel').hasError('pattern')">
+                    Telemóvel deve conter apenas dígitos
+                </mat-error>
+                <mat-error *ngIf="formAssociado.get('telemovel').hasError('minlength') || formAssociado.get('telemovel').hasError('maxlength')">
+                    Telemóvel deve ter 9 dígitos
+                </mat-error>
             </mat-form-field>
         </div>
     
         <div class="linha">
             <mat-form-field class="campos morada">
                 <mat-label>Morada</mat-label>
-                <input matInput placeholder="Morada...">
+                <input formControlName = "morada" matInput>
+                <mat-error *ngIf="formAssociado.get('morada').hasError('minlength') || formAssociado.get('morada').hasError('maxlength')">
+                    Morada deve ter entre 5 e 100 caracteres
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="campos">
                 <mat-label>Concelho</mat-label>
-                <input matInput placeholder="Concelho...">
+                <input formControlName = "concelho" matInput>
+                <mat-error *ngIf="formAssociado.get('concelho').hasError('minlength') || formAssociado.get('concelho').hasError('maxlength')">
+                    Concelho deve ter entre 3 e 70 caracteres
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="campos">
                 <mat-label>Distrito</mat-label>
-                <input matInput placeholder="Distrito...">
+                <input formControlName = "distrito" matInput>
+                <mat-error *ngIf="formAssociado.get('distrito').hasError('minlength') || formAssociado.get('distrito').hasError('maxlength')">
+                    Distrito deve ter entre 5 e 70 caracteres
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="campos codigo-postal">
                 <mat-label>Cód. postal</mat-label>
-                <input matInput>
+                <input formControlName = "codigoPostal" matInput>
+                <mat-error *ngIf="formAssociado.get('codigoPostal').hasError('pattern')">
+                    Cód. postal deve conter apenas dígitos
+                </mat-error>
+                <mat-error *ngIf="formAssociado.get('codigoPostal').hasError('minlength') || formAssociado.get('codigoPostal').hasError('maxlength')">
+                    Cód. postal deve ter deve entre 7 e 8 caracteres
+                </mat-error>
             </mat-form-field>
         </div>
     
         <div class="linha-botoes">
-            <button class="botoes" type="submit" (click)="salvarAssociado()" [disabled]="!formAssociado.valid"
+            <button class="botoes" type="submit" (click)="salvarAssociado()" [disabled]="formAssociado.invalid"
                 mat-raised-button color="primary">Salvar</button>
             <button class="botoes" mat-raised-button>Cancelar</button>
         </div>
