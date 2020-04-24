@@ -1,3 +1,9 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .botao-menu {
     background-color: white;
     margin-top: 0.5em;

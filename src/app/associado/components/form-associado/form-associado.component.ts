@@ -1,9 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { DadosModal } from './../../models/dados-modal';
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { dataNoPassado } from 'src/app/shared/Validators/data-no-passado.validator';
+import { ModalService } from './../../../modals/modal.service';
 import { AssociadoDto } from './../../models/associado-dto.model';
 import { AssociadoService } from './../../service/associado.service';
+import { EscolaAcaoEnum } from 'src/app/shared/models/escolha-acao.enum';
 
 @Component({
   selector: 'app-form-associado',
@@ -15,13 +18,19 @@ export class FormAssociadoComponent implements OnInit {
 
   formAssociado: FormGroup;
 
+  @ViewChild('nome', { static: true })
+  private nome: ElementRef;
+
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private associadoService: AssociadoService
+    private associadoService: AssociadoService,
+    private modalService: ModalService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+    this.nome.nativeElement.focus();
     const associado = this.activatedRoute.snapshot.data.associado as AssociadoDto;
 
     this.formAssociado = this.fb.group({
@@ -44,6 +53,23 @@ export class FormAssociadoComponent implements OnInit {
     const associado: AssociadoDto = this.formAssociado.value;
     this.associadoService.salvarAssociado(this.activatedRoute.snapshot.params.idAssociado, associado);
     this.formAssociado.reset();
+  }
+
+  cancelarCadastramento(): void {
+    const dadosModal: DadosModal = {
+      titulo: 'Associado',
+      mensagem: 'Deseja cancelar a atualização do associado?',
+      textoBotaoEsquerdo: 'Sim',
+      textoBotaoDireito: 'Não'
+    };
+
+    this.modalService
+      .executarSimNaoModal(dadosModal)
+      .subscribe(resultado => {
+        if (resultado === EscolaAcaoEnum.CONFIRMAR) {
+          this.router.navigate(['']);
+        }
+      });
   }
 
   get hoje(): Date {

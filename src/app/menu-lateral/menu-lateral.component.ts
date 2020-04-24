@@ -14,6 +14,10 @@ export class MenuLateralComponent implements OnInit {
   }
 
   chamarNovoAssociado(): void {
-    this.route.navigate(['/form-associado']);
+    this.route.navigate(['form-associado']);
+  }
+
+  listarAssociado(): void {
+    this.route.navigate(['listar-associados']);
   }
 }

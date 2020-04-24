@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ModalsModule } from './../../../modals/sim-nao-modal/modals.module';
 import { MaterialButtonsModule } from './../../../shared/material-buttons.module';
 import { MaterialFormControlsModule } from './../../../shared/material-form-controls.module';
+import { MaterialPopupModalModule } from './../../../shared/Validators/material-popup-modal.module';
 import { FormAssociadoComponent } from './form-associado.component';
 
 @NgModule({
@@ -10,7 +12,9 @@ import { FormAssociadoComponent } from './form-associado.component';
         CommonModule,
         ReactiveFormsModule,
         MaterialFormControlsModule,
-        MaterialButtonsModule
+        MaterialPopupModalModule,
+        MaterialButtonsModule,
+        ModalsModule
     ],
     exports: [FormAssociadoComponent],
     declarations: [FormAssociadoComponent]

@@ -4,7 +4,7 @@
             <div class="linha">
                 <mat-form-field class="campos campo-grande">
                     <mat-label>Nome</mat-label>
-                    <input formControlName = "nome" autofocus matInput>
+                    <input formControlName = "nome" #nome matInput>
                     <mat-error *ngIf="formAssociado.get('nome').hasError('required')">
                         Nome do associado deve ser informado
                     </mat-error>
@@ -128,7 +128,7 @@
         <div class="linha-botoes">
             <button class="botoes" type="submit" (click)="salvarAssociado()" [disabled]="formAssociado.invalid"
                 mat-raised-button color="primary">Salvar</button>
-            <button class="botoes" mat-raised-button>Cancelar</button>
+            <button class="botoes" mat-raised-button (click)="cancelarCadastramento()">Cancelar</button>
         </div>
     </form>
 </div>

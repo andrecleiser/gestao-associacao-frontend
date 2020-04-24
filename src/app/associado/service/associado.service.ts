@@ -26,27 +26,24 @@ export class AssociadoService {
 
     public salvarAssociado(idAssociado: string, associado: AssociadoDto) {
         if (idAssociado) {
-            this.atualizarAssociado(idAssociado, associado).subscribe(() => this.router.navigate(['']));
+            this.atualizarAssociado(idAssociado, associado);
         } else {
             this.novoAssociado(associado);
         }
     }
 
-    private atualizarAssociado(idAssociado: string, associado: AssociadoDto): Observable<AssociadoDto> {
+    private atualizarAssociado(idAssociado: string, associado: AssociadoDto): void {
         const url = `${environment.endpoints.associados}/${idAssociado}`;
-        return this.http
-            .put<AssociadoDto>(url, associado)
-            .pipe(
-                take(1)
-            );
+        this.http
+            .put(url, associado)
+            .pipe(take(1))
+            .subscribe(() => this.router.navigate(['']));
     }
 
     private novoAssociado(associado: AssociadoDto): void {
         this.http
             .post(environment.endpoints.associados, associado)
-            .pipe(
-                take(1)
-            )
-            .subscribe(() => this.router.navigate([]));
+            .pipe(take(1))
+            .subscribe(() => this.router.navigate(['']));
     }
 }

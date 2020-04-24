@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
 
 @NgModule({
     imports: [
-        MatTooltipModule
+        MatTooltipModule,
+        MatDialogModule
     ],
     exports: [
-        MatTooltipModule
+        MatTooltipModule,
+        MatDialogModule
     ]
 })
 export class MaterialPopupModalModule { }
