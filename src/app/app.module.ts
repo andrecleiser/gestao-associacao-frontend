@@ -1,4 +1,3 @@
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
@@ -24,7 +23,6 @@ import { MaterialNavigationModule } from './shared/material-navigation.module';
     HeaderModule,
     AssociadoModule,
     MenuLateralModule,
-    HttpClientModule,
 
     AppRoutingModule
   ],

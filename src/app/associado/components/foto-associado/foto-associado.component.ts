@@ -8,8 +8,6 @@ import { Component, Input, OnInit } from '@angular/core';
 
 export class FotoAssociadoComponent implements OnInit {
 
-  private MIME_TYPE_FOTO = 'data:image/jpeg;base64,';
-
   @Input()
   public fotoBase64: string;
 
@@ -19,6 +17,6 @@ export class FotoAssociadoComponent implements OnInit {
   }
 
   public get foto(): string {
-    return `${this.MIME_TYPE_FOTO}${this.fotoBase64}`;
+    return this.fotoBase64;
   }
 }

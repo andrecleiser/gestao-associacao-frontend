@@ -5,7 +5,6 @@ import { take } from 'rxjs/operators';
 import { AssociadoDto } from './models/associado-dto.model';
 import { AssociadoService } from './service/associado.service';
 
-// @Injectable({ providedIn: 'root' })
 @Injectable()
 export class AssociadoResolver implements Resolve<AssociadoDto> {
 

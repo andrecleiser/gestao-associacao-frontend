@@ -1,7 +1,7 @@
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { PerfilAssociadoDto } from '../../models/perfil-associado-dto.model';
-import { Component, OnInit, Input } from '@angular/core';
+import { CapturarImagemService } from './../../../captura-imagem-browser/service/capturar-imagem.service';
 
 @Component({
   selector: 'app-detalhe-associado',
@@ -13,12 +13,23 @@ export class DetalheAssociadoComponent implements OnInit {
   @Input()
   public dadosAssociado: PerfilAssociadoDto;
 
-  constructor(private route: Router) { }
+  constructor(
+    private route: Router,
+    private capturarImagemService: CapturarImagemService
+  ) { }
 
   ngOnInit(): void {
   }
 
   atualizaAssociado(): void {
     this.route.navigate(['/form-associado', this.dadosAssociado.idAssociado]);
+  }
+
+  atualizarFoto(): void {
+    this.capturarImagemService
+      .capturarImagem()
+      .subscribe(foto => {
+        this.dadosAssociado.foto = foto.nativeElement.toDataURL();
+      });
   }
 }

@@ -1,3 +1,4 @@
+import { CapturaImagemBrowserModule } from './../../../captura-imagem-browser/captura-imagem-browser.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FotoAssociadoModule } from '../foto-associado/foto-associado.module';
@@ -12,7 +13,8 @@ import { DetalheAssociadoComponent } from './detalhe-associado.component';
         MaterialLayoutModule,
         MaterialButtonsModule,
         MaterialPopupModalModule,
-        FotoAssociadoModule
+        FotoAssociadoModule,
+        CapturaImagemBrowserModule
     ],
     declarations: [DetalheAssociadoComponent],
     exports: [DetalheAssociadoComponent]

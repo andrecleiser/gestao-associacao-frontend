@@ -1,0 +1,22 @@
+<mat-tab-group (focusChange)="atualizarAoMudarTab($event)">
+   <mat-tab>
+      <ng-template mat-tab-label>
+         <mat-icon>camera_enhance</mat-icon>
+      </ng-template>
+      <div class="layout-itens">
+         <video #video class="layout-camera" autoplay></video>
+         <button mat-raised-button class="layout-botao" color="primary" (click)="tirarFoto()">Fotografar</button>
+      </div>
+   </mat-tab>
+   <mat-tab>
+      <ng-template mat-tab-label>
+         <mat-icon>picture_in_picture</mat-icon>
+      </ng-template>
+      <div class="layout-itens">
+         <canvas #canvas class="layout-camera"></canvas>
+         <div class="layout-itens-botoes">
+            <button (click)="fechar()" color="primary" mat-raised-button class="layout-botao-visualizacao">Retornar</button>
+         </div>
+      </div>
+   </mat-tab>
+</mat-tab-group>

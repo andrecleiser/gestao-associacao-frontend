@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AssociadoRoutingModule } from './associado-routing.module';
 import { AssociadoResolver } from './associado.resolver';
@@ -12,7 +13,8 @@ import { AssociadoService } from './service/associado.service';
     CommonModule,
     FormAssociadoModule,
     ListaAssociadoModule,
-    AssociadoRoutingModule
+    AssociadoRoutingModule,
+    HttpClientModule
   ],
   exports: [ListaAssociadoModule],
   providers: [
