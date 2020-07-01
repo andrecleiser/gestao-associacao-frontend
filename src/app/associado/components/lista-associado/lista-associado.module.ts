@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { DetalheComponentModule } from '../detalhe-associado/detalhe-associado.module';
 import { MaterialLayoutModule } from '../../../shared/modules/material/material-layout.module';
+import { DetalheComponentModule } from '../detalhe-associado/detalhe-associado.module';
 import { ListaAssociadoComponent } from './lista-associado.component';
 
 @NgModule({

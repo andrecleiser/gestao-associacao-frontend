@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PerfilAssociadoDto } from '../../models/perfil-associado-dto.model';
 import { CapturarImagemService } from './../../../captura-imagem-browser/service/capturar-imagem.service';
 import { AssociadoService } from './../../service/associado.service';
@@ -16,6 +16,7 @@ export class DetalheAssociadoComponent implements OnInit {
 
   constructor(
     private route: Router,
+    private activatedRoute: ActivatedRoute,
     private associadoService: AssociadoService,
     private capturarImagemService: CapturarImagemService
   ) { }
@@ -24,7 +25,7 @@ export class DetalheAssociadoComponent implements OnInit {
   }
 
   atualizaAssociado(): void {
-    this.route.navigate(['/form-associado', this.dadosAssociado.idAssociado]);
+    this.route.navigate(['form-associado', this.dadosAssociado.idAssociado], { relativeTo: this.activatedRoute.parent });
   }
 
   atualizarFoto(): void {

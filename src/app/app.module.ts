@@ -2,34 +2,32 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './app-header/header.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AssociadoModule } from './associado/associado.module';
-import { MenuLateralModule } from './menu-lateral/menu-lateral.module';
-import { ProgressoCarregamentoModule } from './shared/components/progresso-requisicao/progresso-requisicao.module';
-import { MaterialNavigationModule } from './shared/modules/material/material-navigation.module';
+import { LoginModule } from './login/login.module';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { MaterialIndicatorsModule } from './shared/modules/material/material-indicators.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundComponent
   ],
   imports: [
-    BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MaterialNavigationModule,
     HeaderModule,
+    LoginModule,
+    MaterialIndicatorsModule,
     AssociadoModule,
-    MenuLateralModule,
-    ProgressoCarregamentoModule,
 
     AppRoutingModule
   ],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'pt'},
+    { provide: MAT_DATE_LOCALE, useValue: 'pt' },
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
