@@ -1,22 +1,27 @@
-import { Router } from '@angular/router';
-import { take } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map, take, tap } from 'rxjs/operators';
 import { PerfilAssociadoDto } from '../models/perfil-associado-dto.model';
 import { environment } from './../../../environments/environment';
 import { AssociadoDto } from './../models/associado-dto.model';
 
 @Injectable()
 export class AssociadoService {
+    public MEDIA_IMAGEM = 'data:image/png;base64,';
 
     constructor(
         private http: HttpClient,
         private router: Router
-    ) {}
+    ) { }
 
     public listarPerfilAssociados(): Observable<PerfilAssociadoDto[]> {
-        return this.http.get<PerfilAssociadoDto[]>(`${environment.endpoints.associados}/perfis`);
+        return this.http
+            .get<PerfilAssociadoDto[]>(`${environment.endpoints.associados}/perfis`)
+            .pipe(
+                tap(perfis => perfis.forEach(perfil => perfil.foto = (perfil.foto) ? this.MEDIA_IMAGEM + perfil.foto : undefined))
+            );
     }
 
     public buscarAssociadoPorId(idAssociado: number): Observable<AssociadoDto> {
@@ -30,6 +35,11 @@ export class AssociadoService {
         } else {
             this.novoAssociado(associado);
         }
+    }
+
+    public atualizarFotoAssociado(idAssociado: number, foto: string): Observable<undefined> {
+        const url = `${environment.endpoints.associados}/${idAssociado}/foto`;
+        return this.http.put<undefined>(url, foto).pipe(take(1));
     }
 
     private atualizarAssociado(idAssociado: string, associado: AssociadoDto): void {
@@ -46,4 +56,5 @@ export class AssociadoService {
             .pipe(take(1))
             .subscribe(() => this.router.navigate(['']));
     }
+
 }

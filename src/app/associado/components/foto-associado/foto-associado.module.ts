@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MaterialFormControlsModule } from './../../../shared/material-form-controls.module';
+import { MaterialFormControlsModule } from '../../../shared/modules/material/material-form-controls.module';
 import { FotoAssociadoComponent } from './foto-associado.component';
 
 @NgModule({

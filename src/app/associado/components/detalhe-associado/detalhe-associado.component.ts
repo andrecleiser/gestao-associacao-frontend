@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PerfilAssociadoDto } from '../../models/perfil-associado-dto.model';
 import { CapturarImagemService } from './../../../captura-imagem-browser/service/capturar-imagem.service';
+import { AssociadoService } from './../../service/associado.service';
 
 @Component({
   selector: 'app-detalhe-associado',
@@ -15,6 +16,7 @@ export class DetalheAssociadoComponent implements OnInit {
 
   constructor(
     private route: Router,
+    private associadoService: AssociadoService,
     private capturarImagemService: CapturarImagemService
   ) { }
 
@@ -28,8 +30,16 @@ export class DetalheAssociadoComponent implements OnInit {
   atualizarFoto(): void {
     this.capturarImagemService
       .capturarImagem()
-      .subscribe(foto => {
-        this.dadosAssociado.foto = foto.nativeElement.toDataURL();
-      });
+      .subscribe(foto => this.atualizarFotoAssociado(foto));
+  }
+
+  private atualizarFotoAssociado(foto: ElementRef) {
+    if (foto) {
+      this.dadosAssociado.foto = foto.nativeElement.toDataURL();
+      const textoBase64 = 'base64,';
+      const inicioBase64 = this.dadosAssociado.foto.indexOf(textoBase64);
+      const fotoBase64 = this.dadosAssociado.foto.substring(inicioBase64 + textoBase64.length);
+      this.associadoService.atualizarFotoAssociado(this.dadosAssociado.idAssociado, fotoBase64).subscribe(() => alert('tudo certo!'));
+    }
   }
 }

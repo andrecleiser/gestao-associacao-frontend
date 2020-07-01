@@ -2,8 +2,8 @@ import { CapturaImagemBrowserModule } from './../../../captura-imagem-browser/ca
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FotoAssociadoModule } from '../foto-associado/foto-associado.module';
-import { MaterialButtonsModule } from './../../../shared/material-buttons.module';
-import { MaterialLayoutModule } from './../../../shared/material-layout.module';
+import { MaterialButtonsModule } from '../../../shared/modules/material/material-buttons.module';
+import { MaterialLayoutModule } from '../../../shared/modules/material/material-layout.module';
 import { MaterialPopupModalModule } from './../../../shared/Validators/material-popup-modal.module';
 import { DetalheAssociadoComponent } from './detalhe-associado.component';
 

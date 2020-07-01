@@ -9,7 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AssociadoModule } from './associado/associado.module';
 import { MenuLateralModule } from './menu-lateral/menu-lateral.module';
-import { MaterialNavigationModule } from './shared/material-navigation.module';
+import { ProgressoCarregamentoModule } from './shared/components/progresso-requisicao/progresso-requisicao.module';
+import { MaterialNavigationModule } from './shared/modules/material/material-navigation.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MaterialNavigationModule } from './shared/material-navigation.module';
     HeaderModule,
     AssociadoModule,
     MenuLateralModule,
+    ProgressoCarregamentoModule,
 
     AppRoutingModule
   ],

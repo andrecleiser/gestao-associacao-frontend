@@ -1,4 +1,4 @@
-import { MaterialNavigationModule } from '../shared/material-navigation.module';
+import { MaterialNavigationModule } from '../shared/modules/material/material-navigation.module';
 import { HeaderComponent } from './header.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
