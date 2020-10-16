@@ -1,0 +1,14 @@
+<p mat-dialog-title>{{ dadosModal.titulo }}</p>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+  <h2>{{ dadosModal.mensagem }}</h2>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions class="botoes">
+  <button class="botao" mat-raised-button [mat-dialog-close]="confirmar" cdkFocusInitial>
+    {{ dadosModal.textoBotaoEsquerdo }}
+  </button>
+  <button class="botao" mat-raised-button [mat-dialog-close]="cancelar" (click)="cancelarModal()">
+    {{ dadosModal.textoBotaoDireito }}
+  </button>
+</div>

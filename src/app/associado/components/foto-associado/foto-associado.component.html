@@ -1,0 +1,8 @@
+<div class="foto-geral">
+    <img class="foto-show" *ngIf="fotoBase64; else semfoto" [attr.src]="foto">
+    <ng-template #semfoto>
+        <div class="sem-foto">
+            <h3>Sem Foto</h3>
+        </div>
+    </ng-template>
+</div>

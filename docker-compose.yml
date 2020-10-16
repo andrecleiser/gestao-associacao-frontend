@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  nginx:
+    build:
+      dockerfile: ./docker/nginx-ga-app.dockerfile
+      context: .
+    image: nginx-ga-app
+    depends_on:
+      - "node"
+
+  node:
+      build:
+        dockerfile: ./docker/node-ga-app.dockerfile
+        context: .
+      image: node-ga-app

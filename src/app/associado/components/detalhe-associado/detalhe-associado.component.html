@@ -1,0 +1,18 @@
+<div class="card-padrao">
+  <app-foto-associado [fotoBase64]="dadosAssociado.foto"></app-foto-associado>
+  <mat-divider></mat-divider>
+  <div class="dados-associado">
+    <p class="conteudo"> {{ dadosAssociado.nome }} </p>
+    <p class="conteudo"> {{ dadosAssociado.dataNascimento | date: 'dd/MM/yyyy' }} </p>
+    <p class="conteudo"> {{ dadosAssociado.nacionalidade }} </p>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="div-botao-atualizar">
+    <button class="botao-atualizar" mat-button matTooltip="Atualizar dados" (click)="atualizaAssociado()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button class="botao-atualizar" mat-button matTooltip="Atualizar foto" (click)="atualizarFoto()">
+      <mat-icon>camera_enhance</mat-icon>
+    </button>
+  </div>
+</div>

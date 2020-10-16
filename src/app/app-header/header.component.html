@@ -1,0 +1,15 @@
+<mat-toolbar color=primary class="header-geral">
+    <div class="flex-container">
+        <div class="titulo-app">
+            <h1> Gestão de associados </h1>
+        </div>
+        <div class="credenciais">
+            <span>
+                {{ (usuario$ | async)?.nome }}
+            </span>
+            <button mat-icon-button color="primary" (click)="logout()" matTooltip="Encerrar a sessão">
+                <mat-icon>highlight_off</mat-icon>
+            </button>
+        </div>
+    </div>
+</mat-toolbar>

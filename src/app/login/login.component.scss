@@ -1,0 +1,20 @@
+@import '~@angular/material/theming';
+.geral {
+    align-content: center;
+    @include mat-elevation(6);
+    margin-top: 100px;
+    width: 350px;
+    height: 250px;
+}
+
+.layout-itens {
+    margin: 5 15 0 15;
+    width: 95%;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}

@@ -1,0 +1,39 @@
+@import '~@angular/material/theming';
+
+.card-padrao {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 395px;
+    margin: 25px 0px 25px 0px;
+    @include mat-elevation(6);
+    background-color: white;
+}
+
+.dados-associado {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.conteudo {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.div-botao-atualizar {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+    align-items: flex-end;
+}
+
+.botao-atualizar {
+    flex-grow: 1;
+    margin: 10px;
+}
