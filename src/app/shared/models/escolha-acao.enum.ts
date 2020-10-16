@@ -1,3 +1,3 @@
-export enum EscolaAcaoEnum {
+export enum EscolhaAcaoEnum {
     CONFIRMAR, CANCELAR
 }

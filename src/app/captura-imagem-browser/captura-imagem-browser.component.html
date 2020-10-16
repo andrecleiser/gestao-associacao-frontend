@@ -1,22 +1,36 @@
-<mat-tab-group (focusChange)="atualizarAoMudarTab($event)">
+<mat-tab-group>
    <mat-tab>
       <ng-template mat-tab-label>
          <mat-icon>camera_enhance</mat-icon>
       </ng-template>
       <div class="layout-itens">
-         <video #video class="layout-camera"></video>
+         <webcam [height]="500" [width]="350" [trigger]="triggerObservable"
+            (imageCapture)="handleImage($event)"
+            [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+            [videoOptions]="videoOptions"
+            [imageQuality]="0.5"
+            (cameraSwitched)="cameraWasSwitched($event)"
+            (initError)="handleInitError($event)"></webcam>
          <button mat-raised-button class="layout-botao" color="primary" (click)="tirarFoto()">Fotografar</button>
+      </div>
+      <div class="layout-itens">
+         <div class="snapshot" *ngIf="webcamImage">
+            <img [src]="webcamImage.imageAsDataUrl"/>
+            <div class="layout-itens-botoes">
+               <button (click)="fechar(webcamImage)" color="primary" mat-raised-button class="layout-botao-visualizacao">Salvar e sair</button>
+               <button (click)="fechar(undefined)" mat-raised-button class="layout-botao-visualizacao">Sair</button>
+            </div>
+          </div>
+          
+          <h4 *ngIf="errors.length > 0">Messages:</h4>
+          <ul *ngFor="let error of errors">
+            <li>{{error | json}}</li>
+          </ul>         
       </div>
    </mat-tab>
    <mat-tab>
       <ng-template mat-tab-label>
          <mat-icon>picture_in_picture</mat-icon>
       </ng-template>
-      <div class="layout-itens">
-         <canvas #canvas class="layout-camera"></canvas>
-         <div class="layout-itens-botoes">
-            <button (click)="fechar()" color="primary" mat-raised-button class="layout-botao-visualizacao">Retornar</button>
-         </div>
-      </div>
    </mat-tab>
 </mat-tab-group>

@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
@@ -6,10 +7,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './app-header/header.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AssociadoModule } from './associado/associado.module';
 import { LoginModule } from './login/login.module';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { InterceptorsModule } from './shared/interceptor/interceptors.module';
 import { MaterialIndicatorsModule } from './shared/modules/material/material-indicators.module';
+import { MaterialSnackBarModule } from './shared/modules/material/material-snackbar.module';
 
 @NgModule({
   declarations: [
@@ -22,8 +24,9 @@ import { MaterialIndicatorsModule } from './shared/modules/material/material-ind
     HeaderModule,
     LoginModule,
     MaterialIndicatorsModule,
-    AssociadoModule,
-
+    HttpClientModule,
+    InterceptorsModule,
+    MaterialSnackBarModule,
     AppRoutingModule
   ],
   providers: [

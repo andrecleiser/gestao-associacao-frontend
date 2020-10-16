@@ -6,7 +6,7 @@ import { dataNoPassado } from 'src/app/shared/Validators/data-no-passado.validat
 import { ModalService } from './../../../modals/modal.service';
 import { AssociadoDto } from './../../models/associado-dto.model';
 import { AssociadoService } from './../../service/associado.service';
-import { EscolaAcaoEnum } from 'src/app/shared/models/escolha-acao.enum';
+import { EscolhaAcaoEnum } from 'src/app/shared/models/escolha-acao.enum';
 
 @Component({
   selector: 'app-form-associado',
@@ -66,7 +66,7 @@ export class FormAssociadoComponent implements OnInit {
     this.modalService
       .executarSimNaoModal(dadosModal)
       .subscribe(resultado => {
-        if (resultado === EscolaAcaoEnum.CONFIRMAR) {
+        if (resultado === EscolhaAcaoEnum.CONFIRMAR) {
           this.router.navigate(['']);
         }
       });

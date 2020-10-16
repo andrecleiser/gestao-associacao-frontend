@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --ssl true",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -22,7 +22,11 @@
     "@angular/platform-browser": "~10.0.2",
     "@angular/platform-browser-dynamic": "~10.0.2",
     "@angular/router": "~10.0.2",
+    "jwt-decode": "^3.0.0-beta.2",
+    "material-design-icons": "^3.0.1",
     "moment": "^2.24.0",
+    "ngx-cookie-service": "^10.0.1",
+    "ngx-webcam": "^0.3.0",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

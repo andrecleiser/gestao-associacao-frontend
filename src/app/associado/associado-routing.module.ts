@@ -1,17 +1,18 @@
-import { AssociadoMenuComponent } from './components/associado-menu/associado-menu.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AutorizadoGuard } from '../shared/guard/autorizado.guard';
 import { AssociadoResolver } from './associado.resolver';
+import { AssociadoMenuComponent } from './components/associado-menu/associado-menu.component';
 import { FormAssociadoComponent } from './components/form-associado/form-associado.component';
 import { ListaAssociadoComponent } from './components/lista-associado/lista-associado.component';
 
 const routes: Routes = [
   {
-    path: 'associado-menu',
+    path: '',
     component: AssociadoMenuComponent,
+    canActivate: [AutorizadoGuard],
+    canActivateChild: [AutorizadoGuard],
     children: [
-
-      { path: '', redirectTo: 'listar-associados', pathMatch: 'full' },
       { path: 'listar-associados', component: ListaAssociadoComponent },
       { path: 'form-associado/:idAssociado', component: FormAssociadoComponent, resolve: { associado: AssociadoResolver } },
       {

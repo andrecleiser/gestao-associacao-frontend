@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { AssociadoRoutingModule } from './associado-routing.module';
 import { AssociadoResolver } from './associado.resolver';
 import { AssociadoMenuModule } from './components/associado-menu/associado-menu.module';
 import { AssociadoService } from './service/associado.service';
@@ -9,9 +9,8 @@ import { AssociadoService } from './service/associado.service';
   imports: [
     CommonModule,
     AssociadoMenuModule,
-    HttpClientModule
+    AssociadoRoutingModule
   ],
-  exports: [AssociadoMenuModule],
   providers: [
     AssociadoService,
     AssociadoResolver

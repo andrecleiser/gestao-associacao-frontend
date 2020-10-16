@@ -4,3 +4,22 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '../node_modules/material-design-icons/iconfont/material-icons.css';
+
+snack-bar-container.snack-erro {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+snack-bar-container.snack-alerta {
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+}
+
+snack-bar-container.snack-aviso {
+    background-color: cornsilk;
+    color: black;
+    font-weight: bold;
+}

@@ -1,3 +1,4 @@
+import { MensagemService } from './../../shared/service/mensagens/mensagem.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -13,7 +14,8 @@ export class AssociadoService {
 
     constructor(
         private http: HttpClient,
-        private router: Router
+        private router: Router,
+        private mensagemService: MensagemService
     ) { }
 
     public listarPerfilAssociados(): Observable<PerfilAssociadoDto[]> {
@@ -39,7 +41,10 @@ export class AssociadoService {
 
     public atualizarFotoAssociado(idAssociado: number, foto: string): Observable<undefined> {
         const url = `${environment.endpoints.associados}/${idAssociado}/foto`;
-        return this.http.put<undefined>(url, foto).pipe(take(1));
+        return this.http.put<undefined>(url, foto).pipe(
+            take(1),
+            tap(() => this.mensagemService.aviso('Foto atualizada com sucesso. Aguarde atualização no browser...'))
+        );
     }
 
     private atualizarAssociado(idAssociado: string, associado: AssociadoDto): void {

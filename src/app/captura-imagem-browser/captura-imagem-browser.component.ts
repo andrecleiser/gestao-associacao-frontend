@@ -1,6 +1,7 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { MatTabChangeEvent } from '@angular/material/tabs';
+import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-captura-imagem-browser',
@@ -10,68 +11,61 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 
 export class CapturaImagemBrowserComponent implements OnInit {
 
-  @ViewChild('video', { static: true }) videoElement: ElementRef;
-  @ViewChild('canvas', { static: true }) canvas: ElementRef;
+  public allowCameraSwitch = true;
+  public multipleWebcamsAvailable = false;
+  public deviceId: string;
+  public videoOptions: MediaTrackConstraints = {};
 
-  private configuracoes = {
-    video: {
-      facingMode: 'user',
-      width: { ideal: 4096 },
-      height: { ideal: 2160 }
-    }
-  };
+  public errors: WebcamInitError[] = [];
 
-  private capturouImagem = false;
+  // latest snapshot
+  public webcamImage: WebcamImage = undefined;
+
+  // webcam snapshot trigger
+  private trigger: Subject<void> = new Subject<void>();
+  // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceId
+  private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
 
   constructor(
-    private renderer: Renderer2,
     public dialog: MatDialogRef<CapturaImagemBrowserComponent>
   ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.iniciarCamera();
   }
 
   private iniciarCamera(): void {
-    this.videoElement.nativeElement.play();
-    const browser = navigator as any;
-    browser.getUserMedia = (browser.getUserMedia ||
-      browser.webkitGetUserMedia ||
-      browser.mozGetUserMedia ||
-      browser.msGetUserMedia);
-
-    browser.mediaDevices
-      .getUserMedia(this.configuracoes)
-      .then(this.attachVideo.bind(this))
-      .catch(this.handleError);
+    WebcamUtil.getAvailableVideoInputs()
+      .then((mediaDevices: MediaDeviceInfo[]) => {
+        this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
+      });
   }
-
-  private handleError(error: object) {
-    alert(`Erro: ${error}`);
-  }
-
-  private attachVideo(mediaStream: MediaStream): void {
-    this.renderer.setProperty(this.videoElement.nativeElement, 'srcObject', mediaStream);
-    // this.renderer.listen(this.videoElement.nativeElement, 'play', (evento) => {
-    //   this.videoHeight = this.videoElement.nativeElement.videoHeight;
-    //   this.videoWidth = this.videoElement.nativeElement.videoWidth;
-    // });
-    }
 
   public tirarFoto(): void {
-    this.renderer.setProperty(this.canvas.nativeElement, 'width', this.videoElement.nativeElement.videoWidth);
-    this.renderer.setProperty(this.canvas.nativeElement, 'height', this.videoElement.nativeElement.videoHeight);
-    this.canvas.nativeElement.getContext('2d').drawImage(this.videoElement.nativeElement, 0, 0);
-    this.capturouImagem = true;
+    this.trigger.next();
   }
 
-  public atualizarAoMudarTab(tabAtiva: MatTabChangeEvent): void {
-    if (tabAtiva.index === 0) {
-      this.videoElement.nativeElement.play();
-    }
+  public handleInitError(error: WebcamInitError): void {
+    this.errors.push(error);
   }
 
-  public fechar() {
-    this.dialog.close(this.capturouImagem ? this.canvas : undefined);
+  public handleImage(webcamImage: WebcamImage): void {
+    this.webcamImage = webcamImage;
+  }
+
+  public cameraWasSwitched(deviceId: string): void {
+    this.deviceId = deviceId;
+  }
+
+  public get triggerObservable(): Observable<void> {
+    return this.trigger.asObservable();
+  }
+
+  public get nextWebcamObservable(): Observable<boolean|string> {
+    return this.nextWebcam.asObservable();
+  }
+
+  public fechar(webcamImage: WebcamImage) {
+    this.dialog.close(webcamImage);
   }
 }

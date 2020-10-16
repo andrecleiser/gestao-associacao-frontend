@@ -1,5 +1,6 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { WebcamImage } from 'ngx-webcam';
 import { PerfilAssociadoDto } from '../../models/perfil-associado-dto.model';
 import { CapturarImagemService } from './../../../captura-imagem-browser/service/capturar-imagem.service';
 import { AssociadoService } from './../../service/associado.service';
@@ -17,8 +18,8 @@ export class DetalheAssociadoComponent implements OnInit {
   constructor(
     private route: Router,
     private activatedRoute: ActivatedRoute,
-    private associadoService: AssociadoService,
-    private capturarImagemService: CapturarImagemService
+    private capturarImagemService: CapturarImagemService,
+    private associadoService: AssociadoService
   ) { }
 
   ngOnInit(): void {
@@ -34,13 +35,12 @@ export class DetalheAssociadoComponent implements OnInit {
       .subscribe(foto => this.atualizarFotoAssociado(foto));
   }
 
-  private atualizarFotoAssociado(foto: ElementRef) {
+  private atualizarFotoAssociado(foto: WebcamImage) {
     if (foto) {
-      this.dadosAssociado.foto = foto.nativeElement.toDataURL();
-      const textoBase64 = 'base64,';
-      const inicioBase64 = this.dadosAssociado.foto.indexOf(textoBase64);
-      const fotoBase64 = this.dadosAssociado.foto.substring(inicioBase64 + textoBase64.length);
-      this.associadoService.atualizarFotoAssociado(this.dadosAssociado.idAssociado, fotoBase64).subscribe(() => alert('tudo certo!'));
+      this.dadosAssociado.foto = foto.imageAsDataUrl;
+      this.associadoService
+        .atualizarFotoAssociado(this.dadosAssociado.idAssociado, foto.imageAsBase64)
+        .subscribe();
     }
   }
 }
