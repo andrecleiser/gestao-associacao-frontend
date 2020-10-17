@@ -14,7 +14,7 @@ export class UsuarioService {
     constructor(
         private tokenService: TokenService,
         private router: Router
-    ) {
+        ) {
         // Garante que será usado o cookie mesmo após fechar a janela do browse
         if (this.tokenService.existeToken()) {
             this.decodificarENotificarLoginUsuario();

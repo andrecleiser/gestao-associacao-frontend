@@ -3,7 +3,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({providedIn: 'root'})
 export class TokenService {
-    private readonly NOME_COOKIE_TOKEN_ACESSO = 'tokenAcesso';
+    public readonly NOME_COOKIE_TOKEN_ACESSO = 'tokenAcesso';
 
     constructor(private cookieService: CookieService) { }
 

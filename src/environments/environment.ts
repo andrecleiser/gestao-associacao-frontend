@@ -5,6 +5,9 @@
 const API_BASE = 'http://localhost:8080';
 const API_BASE_SEGURANCA = 'http://localhost:8081';
 
+// const API_BASE = 'https://api-gestao-associados.herokuapp.com/';
+// const API_BASE_SEGURANCA = 'https://app-seguranca-api.herokuapp.com';
+
 export const environment = {
   production: false,
 

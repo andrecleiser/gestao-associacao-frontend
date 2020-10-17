@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { UsuarioService } from '../service/auth/usuario.service';
+import { TokenService } from './../service/auth/token.service';
 import { MensagemService } from './../service/mensagens/mensagem.service';
 
 
@@ -11,6 +12,7 @@ import { MensagemService } from './../service/mensagens/mensagem.service';
 export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private usuario: UsuarioService,
+    private token: TokenService,
     private mensagemService: MensagemService
   ) { }
 
@@ -25,7 +27,12 @@ export class AuthInterceptor implements HttpInterceptor {
 
   processarRequisicao(requisicao: HttpRequest<any>): HttpRequest<any> {
     const reqWithCredentials: HttpRequest<any> = requisicao.clone({withCredentials: true });
-
+    if (this.usuario.existeUsuarioLogado()) {
+      return reqWithCredentials.clone({
+        headers: reqWithCredentials.headers.set('Cookie',
+          `${this.token.NOME_COOKIE_TOKEN_ACESSO}=${this.token.obterToken()}`),
+      });
+    }
     return reqWithCredentials;
   }
 
