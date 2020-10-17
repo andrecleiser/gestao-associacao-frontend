@@ -12,6 +12,8 @@ export const environment = {
   production: false,
 
   endpoints: {
+    apiRecurso: API_BASE,
+    apiSeguranca: API_BASE_SEGURANCA,
     associados: `${API_BASE}/associados`,
     autenticao: `${API_BASE_SEGURANCA}`,
   },

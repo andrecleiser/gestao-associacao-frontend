@@ -4,6 +4,8 @@ const API_BASE_SEGURANCA = 'https://app-seguranca-api.herokuapp.com';
 export const environment = {
   production: true,
   endpoints: {
+    apiRecurso: API_BASE,
+    apiSeguranca: API_BASE_SEGURANCA,
     associados: `${API_BASE}/associados`,
     autenticao: `${API_BASE_SEGURANCA}`,
   },

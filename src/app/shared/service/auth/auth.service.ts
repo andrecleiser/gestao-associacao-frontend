@@ -1,5 +1,8 @@
+import { TokenDto } from './../../models/auth/token-dto.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { environment } from './../../../../environments/environment';
 import { UsuarioService } from './usuario.service';
 
@@ -13,7 +16,7 @@ export class AutenticacaoService {
     private usuarioService: UsuarioService
   ) { }
 
-  public autenticar(usuario: string, senha: string) {
+  public autenticar(usuario: string, senha: string): Observable<TokenDto> {
     const credenciaisSistema = `${environment.aplicacao.clienteId}:${environment.aplicacao.clienteSecrect}`;
     const auth = `Basic ${btoa(credenciaisSistema)}`;
 
@@ -23,7 +26,10 @@ export class AutenticacaoService {
     const uri = `${environment.endpoints.autenticao}/autenticacao`;
 
     return this.http
-      .post(uri, credenciais, { headers });
+      .post<TokenDto>(uri, credenciais, { headers })
+      .pipe(
+        tap(token => console.log(token))
+      );
   }
 
   public logout(): void {

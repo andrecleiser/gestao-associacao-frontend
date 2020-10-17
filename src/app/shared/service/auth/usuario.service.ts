@@ -1,3 +1,5 @@
+import { environment } from './../../../../environments/environment.prod';
+import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { Token } from './../../models/auth/token.model';
 import { Injectable } from '@angular/core';
@@ -13,6 +15,7 @@ export class UsuarioService {
 
     constructor(
         private tokenService: TokenService,
+        private cookieService: CookieService,
         private router: Router
         ) {
         // Garante que será usado o cookie mesmo após fechar a janela do browse
@@ -21,8 +24,15 @@ export class UsuarioService {
         }
     }
 
-    public registrarUsuario() {
+    public registrarUsuario(token: string): void {
+        this.criarCookieAcesso(token);
         this.decodificarENotificarLoginUsuario();
+    }
+
+    private criarCookieAcesso(token: string) {
+        const hoje = new Date();
+        hoje.setMinutes(new Date().getMinutes() + 5);
+        this.cookieService.set( this.tokenService.NOME_COOKIE_TOKEN_ACESSO, token, hoje);
     }
 
     private decodificarENotificarLoginUsuario() {

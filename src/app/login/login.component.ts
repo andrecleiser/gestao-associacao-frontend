@@ -33,9 +33,10 @@ export class LoginComponent implements OnInit {
       const password = this.formLogin.get('password').value;
       this.authService
         .autenticar(username, password)
-        .subscribe(() => {
+        .subscribe(token => {
+          console.log(token)
+          this.usuarioService.registrarUsuario(token.tokenAcesso);
           this.router.navigate(['home']);
-          this.usuarioService.registrarUsuario();
         });
     }
   }
