@@ -1,4 +1,4 @@
-const API_BASE = 'https://api-gestao-associados.herokuapp.com/';
+const API_BASE = 'https://api-gestao-associados.herokuapp.com';
 const API_BASE_SEGURANCA = 'https://app-seguranca-api.herokuapp.com';
 
 export const environment = {
